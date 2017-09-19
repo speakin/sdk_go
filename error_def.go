@@ -1,4 +1,4 @@
-package cloud_sdk
+package sdk_go
 
 type ApiError struct {
 	ErrorId   string `bson:"id"`

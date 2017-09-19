@@ -1,4 +1,4 @@
-package cloud_sdk
+package sdk_go
 
 import (
 	"fmt"
@@ -8,9 +8,9 @@ import (
 )
 
 const (
-	BASE_URL   = "http://192.168.0.11:8088"
+	BASE_URL   = "http://api3.speakin.mobi"
 	APP_ID     = "speakin_test"
-	APP_SECRET = "zu2xmlvaynt4zyajei2fx7jod0ni7uq7"
+	APP_SECRET = "mr1imt1etu7ryets9eoergua87h0pa4n"
 )
 
 var api *Api

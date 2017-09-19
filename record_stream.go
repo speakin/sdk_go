@@ -1,4 +1,4 @@
-package cloud_sdk
+package sdk_go
 
 import (
 	"github.com/speakin/sdk_go/sdk_obj"
