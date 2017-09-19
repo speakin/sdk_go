@@ -26,3 +26,13 @@ type Module struct {
 type ListModuleRespone struct {
 	ModuleList []Module `bson:"module_list"`
 }
+
+type QueryTraceRequest struct {
+	Offset int32 `bson:"offset"`
+	Limit  int32 `bson:"limit"`
+}
+
+type QueryTraceResponse struct {
+	TotalCount int32  `bson:"total_count"`
+	LogContent string `bson:"log_content"`
+}

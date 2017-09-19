@@ -64,7 +64,7 @@ func TestSessionApi(t *testing.T) {
 }
 
 func upload(sessApi *SessionApi, target string) (string, *ApiError) {
-	recordInfo, apiErr := sessApi.StartRecord(&sdk_obj.StartRecordRequest{
+	rs, apiErr := sessApi.OpenRecordStream(&sdk_obj.StartRecordRequest{
 		DataFormat:    sdk_obj.DATA_FORMAT_WAV,
 		TargetAction:  target,
 		VoiceBitCount: 16,
@@ -74,7 +74,6 @@ func upload(sessApi *SessionApi, target string) (string, *ApiError) {
 	if nil != apiErr {
 		return "", apiErr
 	}
-	rs := sessApi.OpenRecordStream(recordInfo.RecordId)
 	content, err := ioutil.ReadFile("test_data/SI_device1_1262_Samsung1_advertisement_2-concated.wav")
 	if nil != err {
 		return "", apiErr
@@ -87,5 +86,5 @@ func upload(sessApi *SessionApi, target string) (string, *ApiError) {
 	if nil != apiErr {
 		return "", apiErr
 	}
-	return recordInfo.RecordId, nil
+	return rs.GetRecordId(), nil
 }

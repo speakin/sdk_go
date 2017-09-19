@@ -45,3 +45,10 @@ func (this *Api) StartSession(request *sdk_obj.StartSessionRequest, traceId ...s
 func (this *Api) GetUserApi() *UserApi {
 	return newUserApi(this.appId, this.appSecret, this.baseUrl)
 }
+
+func (this *Api) QueryTrace(request *sdk_obj.QueryTraceRequest, traceId string) (*sdk_obj.QueryTraceResponse, *ApiError) {
+	httpUrl := fmt.Sprintf("%s/v1/query_trace?traceId=%s", this.baseUrl, url.QueryEscape(traceId))
+	response := &sdk_obj.QueryTraceResponse{}
+	apiError := callApi(request, response, httpUrl, this.appId, sdk_obj.ID_TYPE_APP, this.appSecret, false)
+	return response, apiError
+}

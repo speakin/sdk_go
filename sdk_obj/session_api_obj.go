@@ -20,10 +20,6 @@ type UploadRecordPartRequest struct {
 	Data     []byte `bson:"data"`
 }
 
-func (this *UploadRecordPartRequest) setRawData(data []byte) {
-	//TODO
-}
-
 type UploadRecordPartResponse struct {
 }
 

@@ -42,3 +42,7 @@ func (this *RecordStream) Cancel() *ApiError {
 	}, this.traceId)
 	return apiError
 }
+
+func (this *RecordStream) GetRecordId() string {
+	return this.recordId
+}

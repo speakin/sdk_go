@@ -22,7 +22,19 @@ func NewSessionApi(sessionId, sessionSecret, baseUrl string, skipCrypt bool) *Se
 	}
 }
 
-func (this *SessionApi) StartRecord(request *sdk_obj.StartRecordRequest, traceId ...string) (*sdk_obj.StartRecordResponse, *ApiError) {
+func (this *SessionApi) OpenRecordStream(request *sdk_obj.StartRecordRequest, traceId ...string) (*RecordStream, *ApiError) {
+	tid := ""
+	if len(traceId) > 0 {
+		tid = traceId[0]
+	}
+	resp, err := this.startRecord(request, traceId...)
+	if nil != err {
+		return nil, err
+	}
+	return newRecordStream(this, resp.RecordId, tid), nil
+}
+
+func (this *SessionApi) startRecord(request *sdk_obj.StartRecordRequest, traceId ...string) (*sdk_obj.StartRecordResponse, *ApiError) {
 	tid := ""
 	if len(traceId) > 0 {
 		tid = traceId[0]
@@ -31,14 +43,6 @@ func (this *SessionApi) StartRecord(request *sdk_obj.StartRecordRequest, traceId
 	response := &sdk_obj.StartRecordResponse{}
 	apiError := callApi(request, response, httpUrl, this.sessionId, sdk_obj.ID_TYPE_SESSION, this.sessionSecret, this.skipCrypt)
 	return response, apiError
-}
-
-func (this *SessionApi) OpenRecordStream(recordId string, traceId ...string) *RecordStream {
-	tid := ""
-	if len(traceId) > 0 {
-		tid = traceId[0]
-	}
-	return newRecordStream(this, recordId, tid)
 }
 
 func (this *SessionApi) uploadRecordPart(request *sdk_obj.UploadRecordPartRequest, traceId ...string) (*sdk_obj.UploadRecordPartResponse, *ApiError) {
