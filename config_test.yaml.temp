@@ -1,0 +1,37 @@
+# 服务器地址
+app:
+  name: "your app name"
+  accessKey: "accessKey"
+  secretKey: "secretKey"
+bucket:
+  name: "your bucket name"
+  accessKey: "accessKey"
+  secretKey: "secretKey"
+TestData:
+  simpleRate: "16k"
+  Users:
+    - Name: "user1"
+      Files:
+        - "./testdata/audio-data/u1/01_16k.wav"
+        - "./testdata/audio-data/u1/02_16k.wav"
+        - "./testdata/audio-data/u1/03_16k.wav"
+        - "./testdata/audio-data/u1/04_16k.wav"
+        - "./testdata/audio-data/u1/05_16k.wav"
+
+    - Name: "user2"
+      Files:
+        - "./testdata/audio-data/u2/01_16k.wav"
+        - "./testdata/audio-data/u2/02_16k.wav"
+        - "./testdata/audio-data/u2/03_16k.wav"
+        - "./testdata/audio-data/u2/04_16k.wav"
+        - "./testdata/audio-data/u2/05_16k.wav"
+
+    - Name: "user3"
+      Files:
+        - "./testdata/audio-data/u3/01_16k.wav"
+        - "./testdata/audio-data/u3/02_16k.wav"
+        - "./testdata/audio-data/u3/03_16k.wav"
+        - "./testdata/audio-data/u3/04_16k.wav"
+        - "./testdata/audio-data/u3/05_16k.wav"
+
+

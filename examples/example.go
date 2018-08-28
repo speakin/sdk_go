@@ -1,40 +1,9 @@
+/*
+ * Copyright (c) 2018. The speakin Authors. All rights reserved.
+ * Use of this source code is governed by a MIT style
+ * license that can be found in the LICENSE file.
+ */
 
-
-### 安装
-
-    go get -u github.com/speakin/go_sdk
-
-### 使用
-
-加载sdk包
-
-```go
-import sdk "github.com/speakin/go_sdk"
-
-```
-
-加载openapi
-
-```go
-import "github.com/speakin/go_sdk/openapi"
-```
-
-初始化客户端
-
-[embedmd]:# (examples/example.go /client := sdk/ /\)/)
-```go
-client := sdk.NewClient(
-		"your_access_key", // app access key
-		"your_secret_key", // app secret key
-		"your_bucket_access_key", // bucket access key
-		"your_bucket_secret_key", // bucket secret key
-	)
-```
-
-### 完整例子
-
-[embedmd]:# (examples/example.go /package/ $)
-```go
 package main
 
 import (
@@ -205,4 +174,3 @@ func main() {
 	}
 
 }
-```
