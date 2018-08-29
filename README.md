@@ -45,6 +45,7 @@ import (
 	"github.com/antihax/optional"
 	"os"
 	"time"
+	"io/ioutil"
 )
 
 func uploadFile(filename string, client *openapi.APIClient, bucket string) string {
@@ -189,19 +190,19 @@ func main() {
 		}
 		fmt.Printf("verify file %s match user %s score: %v\n", checkFiles[i], resp.Data.UnionID, resp.Data.Score)
 	}
-	// 下载 TODO openapi有bug暂时无法使用
+	// 下载
 	{
-		//_, resp, err := client.StorageApi.Download(context.Background(),
-		//	bucket, checkFilesKeys[0])
-		//if err != nil {
-		//	panic(err)
-		//}
-		//
-		//b, err := ioutil.ReadAll(resp.Body)
-		//if err != nil {
-		//	panic(err)
-		//}
-		//ioutil.WriteFile("../testdata/tmp/tmp.wav", b, 0644)
+		_, resp, err := client.StorageApi.Download(context.Background(),
+			bucket, checkFilesKeys[0])
+		if err != nil {
+			panic(err)
+		}
+
+		b, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			panic(err)
+		}
+		ioutil.WriteFile("../testdata/tmp/tmp.wav", b, 0644)
 	}
 
 }
