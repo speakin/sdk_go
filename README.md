@@ -2,21 +2,21 @@
 
 ### 安装
 
-    go get -u github.com/speakin/go_sdk
+    go get -u github.com/speakin/sdk_go
 
 ### 使用
 
 加载sdk包
 
 ```go
-import sdk "github.com/speakin/go_sdk"
+import sdk "github.com/speakin/sdk_go"
 
 ```
 
 加载openapi
 
 ```go
-import "github.com/speakin/go_sdk/openapi"
+import "github.com/speakin/sdk_go/openapi"
 ```
 
 初始化客户端
