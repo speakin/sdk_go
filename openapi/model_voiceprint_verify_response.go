@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,5 +11,6 @@
 package openapi
 
 type VoiceprintVerifyResponse struct {
+	// 声纹得分
 	Score float64 `json:"score,omitempty"`
 }

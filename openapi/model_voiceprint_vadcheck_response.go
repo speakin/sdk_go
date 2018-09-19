@@ -10,7 +10,9 @@
 
 package openapi
 
-type VoiceprintQueryResponse struct {
-	// 是否注册
-	IsRegister bool `json:"isRegister,omitempty"`
+type VoiceprintVadcheckResponse struct {
+	// vad check code
+	Code string `json:"code,omitempty"`
+	// vad check status
+	Status string `json:"status,omitempty"`
 }

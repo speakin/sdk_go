@@ -1,9 +1,10 @@
-# UploadResponse
+# VoiceprintVadcheckResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** | 文件key | [optional] 
+**Code** | **string** | vad check code | [optional] 
+**Status** | **string** | vad check status | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

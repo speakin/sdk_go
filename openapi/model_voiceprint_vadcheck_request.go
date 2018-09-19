@@ -10,9 +10,15 @@
 
 package openapi
 
-type VoiceprintThresholdRequest struct {
+type VoiceprintVadcheckRequest struct {
 	// 应用名字
 	AppName string `json:"appName"`
+	// 文件url
+	Url string `json:"url"`
+	// sampling rate
+	SamplingRate string `json:"samplingRate"`
+	// 时长(以秒为单位)
+	Duration float64 `json:"duration"`
 	// 时间戳（以秒为单位）
 	Timestamp int64 `json:"timestamp"`
 }

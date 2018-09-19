@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,5 +11,6 @@
 package openapi
 
 type VoiceprintThresholdResponse struct {
+	// 阈值
 	Threshold float64 `json:"threshold,omitempty"`
 }

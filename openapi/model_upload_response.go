@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,5 +11,6 @@
 package openapi
 
 type UploadResponse struct {
+	// 文件key
 	Key string `json:"key,omitempty"`
 }

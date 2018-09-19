@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,7 +11,10 @@
 package openapi
 
 type VoiceprintDeleteRequest struct {
+	// 应用名字
 	AppName string `json:"appName"`
+	// union ID
 	UnionID string `json:"unionID"`
+	// 时间戳（以秒为单位）
 	Timestamp int64 `json:"timestamp"`
 }

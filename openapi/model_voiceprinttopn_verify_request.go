@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,9 +11,14 @@
 package openapi
 
 type VoiceprinttopnVerifyRequest struct {
+	// 应用名字
 	AppName string `json:"appName"`
+	// 文件url
 	Url string `json:"url"`
+	// sampling rate
 	SamplingRate string `json:"samplingRate"`
+	// top n
 	Topn int64 `json:"topn"`
+	// 时间戳
 	Timestamp int64 `json:"timestamp"`
 }

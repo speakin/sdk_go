@@ -9,8 +9,10 @@
  */
 
 package openapi
+import (
+	"os"
+)
 
-type VoiceprintQueryResponse struct {
-	// 是否注册
-	IsRegister bool `json:"isRegister,omitempty"`
+type Body struct {
+	File *os.File `json:"file,omitempty"`
 }

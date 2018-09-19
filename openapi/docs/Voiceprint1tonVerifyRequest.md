@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AppName** | **string** |  | 
-**UnionIDs** | **[]string** |  | 
-**Url** | **string** |  | 
-**SamplingRate** | **string** |  | 
-**Timestamp** | **int64** |  | 
+**AppName** | **string** | 应用名字 | 
+**UnionIDs** | **[]string** | union IDs | 
+**Url** | **string** | 文件url | 
+**SamplingRate** | **string** | sampling rate | 
+**Timestamp** | **int64** | 时间戳 | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

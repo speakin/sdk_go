@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -12,11 +12,12 @@ package openapi
 
 import (
 	"context"
+	"github.com/antihax/optional"
+	_ "io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
-	"github.com/antihax/optional"
+	"strings"
 )
 
 // Linger please
@@ -28,6 +29,7 @@ type StorageApiService service
 
 /*
 StorageApiService
+下载文件
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param bucket
  * @param key
@@ -35,12 +37,12 @@ StorageApiService
 */
 func (a *StorageApiService) Download(ctx context.Context, bucket string, key string) (*os.File, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
+		localVarHttpMethod   = strings.ToUpper("Get")
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue *os.File
+		localVarReturnValue  *os.File
 	)
 
 	// create path and map variables
@@ -79,14 +81,13 @@ func (a *StorageApiService) Download(ctx context.Context, bucket string, key str
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 		if err != nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -98,13 +99,13 @@ func (a *StorageApiService) Download(ctx context.Context, bucket string, key str
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v *os.File
-			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -114,28 +115,30 @@ func (a *StorageApiService) Download(ctx context.Context, bucket string, key str
 
 /*
 StorageApiService
+上传文件
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param bucket
  * @param type_
- * @param durationMS
  * @param timestamp
  * @param optional nil or *UploadOpts - Optional Parameters:
- * @param "Body" (optional.Interface of *os.File) - 
+ * @param "DurationMS" (optional.Int64) -
+ * @param "Body" (optional.Interface of *os.File) -  上传文件
 @return CallUploadResponse
 */
 
 type UploadOpts struct {
-    Body optional.Interface
+	DurationMS optional.Int64
+	Body       optional.Interface
 }
 
-func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ string, durationMS int64, timestamp int64, localVarOptionals *UploadOpts) (CallUploadResponse, *http.Response, error) {
+func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ string, timestamp int64, localVarOptionals *UploadOpts) (CallUploadResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
+		localVarHttpMethod   = strings.ToUpper("Post")
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue CallUploadResponse
+		localVarReturnValue  CallUploadResponse
 	)
 
 	// create path and map variables
@@ -147,10 +150,12 @@ func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ str
 
 	localVarQueryParams.Add("bucket", parameterToString(bucket, ""))
 	localVarQueryParams.Add("type", parameterToString(type_, ""))
-	localVarQueryParams.Add("durationMS", parameterToString(durationMS, ""))
+	if localVarOptionals != nil && localVarOptionals.DurationMS.IsSet() {
+		localVarQueryParams.Add("durationMS", parameterToString(localVarOptionals.DurationMS.Value(), ""))
+	}
 	localVarQueryParams.Add("timestamp", parameterToString(timestamp, ""))
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/octet-stream"}
+	localVarHttpContentTypes := []string{"application/octet-stream", "multipart/form-data"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -181,14 +186,13 @@ func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ str
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 		if err != nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -200,13 +204,13 @@ func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ str
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v CallUploadResponse
-			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}

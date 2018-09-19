@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,6 +11,8 @@
 package openapi
 
 type UnionIdScore struct {
+	// union ID
 	UnionID string `json:"unionID,omitempty"`
+	// 得分
 	Score float64 `json:"score,omitempty"`
 }

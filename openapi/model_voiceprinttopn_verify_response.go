@@ -1,5 +1,5 @@
 /*
- * voiceprintstorage
+ * 声纹云api
  *
  * api document
  *
@@ -11,5 +11,6 @@
 package openapi
 
 type VoiceprinttopnVerifyResponse struct {
+	// topn排序
 	Scores []UnionIdScore `json:"scores,omitempty"`
 }

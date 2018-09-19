@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**Query**](VoiceprintApi.md#Query) | **Post** /cloudapi/v1beta/voiceprint/query | 
 [**Register**](VoiceprintApi.md#Register) | **Post** /cloudapi/v1beta/voiceprint/register | 
 [**Threshold**](VoiceprintApi.md#Threshold) | **Post** /cloudapi/v1beta/voiceprint/threshold | 
+[**Vadcheck**](VoiceprintApi.md#Vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 [**Verify**](VoiceprintApi.md#Verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 [**Verify1ton**](VoiceprintApi.md#Verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
 [**Verifytopn**](VoiceprintApi.md#Verifytopn) | **Post** /cloudapi/v1beta/voiceprint/verifytopn | 
@@ -16,6 +17,8 @@ Method | HTTP request | Description
 # **Delete**
 > RespVoiceprintDeleteResponse Delete(ctx, optional)
 
+
+声纹查询
 
 ### Required Parameters
 
@@ -50,6 +53,8 @@ No authorization required
 > RespVoiceprintQueryResponse Query(ctx, optional)
 
 
+声纹查询
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
@@ -82,6 +87,8 @@ No authorization required
 # **Register**
 > RespVoiceprintRegisterResponse Register(ctx, optional)
 
+
+声纹注册
 
 ### Required Parameters
 
@@ -116,6 +123,8 @@ No authorization required
 > RespVoiceprintThresholdResponse Threshold(ctx, optional)
 
 
+查询阈值
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
@@ -145,9 +154,46 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **Vadcheck**
+> RespVoiceprintVadcheckResponse Vadcheck(ctx, optional)
+
+
+VAD检测
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***VadcheckOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a VadcheckOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintVadcheckRequest** | [**optional.Interface of VoiceprintVadcheckRequest**](VoiceprintVadcheckRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintVadcheckResponse**](RespVoiceprintVadcheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **Verify**
 > RespVoiceprintVerifyResponse Verify(ctx, optional)
 
+
+声纹验证
 
 ### Required Parameters
 
@@ -182,6 +228,8 @@ No authorization required
 > RespVoiceprint1tonVerifyResponse Verify1ton(ctx, optional)
 
 
+声纹验证
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
@@ -214,6 +262,8 @@ No authorization required
 # **Verifytopn**
 > RespVoiceprinttopnVerifyResponse Verifytopn(ctx, optional)
 
+
+声纹验证
 
 ### Required Parameters
 

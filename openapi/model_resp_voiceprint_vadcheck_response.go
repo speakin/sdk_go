@@ -10,9 +10,9 @@
 
 package openapi
 
-type RespVoiceprinttopnVerifyResponse struct {
+type RespVoiceprintVadcheckResponse struct {
 	HasError bool `json:"hasError,omitempty"`
 	ErrorId string `json:"errorId,omitempty"`
 	ErrorDesc string `json:"errorDesc,omitempty"`
-	Data VoiceprinttopnVerifyResponse `json:"data,omitempty"`
+	Data VoiceprintVadcheckResponse `json:"data,omitempty"`
 }
