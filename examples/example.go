@@ -93,7 +93,9 @@ func main() {
 				fmt.Printf("%s:%s\n", resp.ErrorId, resp.ErrorDesc)
 				os.Exit(1)
 			}
-			fmt.Printf("vadcheck: %s\n", resp.Data.Code)
+			if resp.Data.Code != "CHECKVAD_OK" {
+				fmt.Printf("vadcheck: %s\n", resp.Data.Code)
+			}
 		}
 	}
 	// 注册
