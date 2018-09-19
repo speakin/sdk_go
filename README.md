@@ -40,12 +40,16 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/antihax/optional"
 	sdk "github.com/speakin/sdk_go"
 	"github.com/speakin/sdk_go/openapi"
-	"github.com/antihax/optional"
+	"io/ioutil"
 	"os"
 	"time"
-	"io/ioutil"
+)
+
+const (
+	sampling = "16k"
 )
 
 func uploadFile(filename string, client *openapi.APIClient, bucket string) string {
@@ -55,7 +59,7 @@ func uploadFile(filename string, client *openapi.APIClient, bucket string) strin
 	}
 
 	resp, _, err := client.StorageApi.Upload(context.Background(),
-		bucket, "wav", 0, time.Now().Unix(),
+		bucket, "wav", time.Now().Unix(),
 		&openapi.UploadOpts{Body: optional.NewInterface(voice)})
 	if err != nil {
 		panic(err)
@@ -70,8 +74,8 @@ func uploadFile(filename string, client *openapi.APIClient, bucket string) strin
 func main() {
 	// 修改为你的app key和bucket key
 	client := sdk.NewClient(
-		"your_access_key", // app access key
-		"your_secret_key", // app secret key
+		"your_access_key",        // app access key
+		"your_secret_key",        // app secret key
 		"your_bucket_access_key", // bucket access key
 		"your_bucket_secret_key", // bucket secret key
 	)
@@ -99,13 +103,37 @@ func main() {
 			userFilesKey[i] = append(userFilesKey[i], uploadFile(filename, client, bucket))
 		}
 	}
+	// vad检测所有上传的文件
+	for i := range userFilesKey {
+		for _, key := range userFilesKey[i] {
+			fmt.Printf("vadcheck key: %s\n", key)
+			// vadcheck
+			req := openapi.VoiceprintVadcheckRequest{
+				AppName:      appName,
+				Url:          key,
+				SamplingRate: sampling,
+				Duration:     1.5,
+				Timestamp:    time.Now().Unix(),
+			}
+			resp, _, err := client.VoiceprintApi.Vadcheck(context.Background(),
+				&openapi.VadcheckOpts{VoiceprintVadcheckRequest: optional.NewInterface(req)})
+			if err != nil {
+				panic(err)
+			}
+			if resp.HasError {
+				fmt.Printf("%s:%s\n", resp.ErrorId, resp.ErrorDesc)
+				os.Exit(1)
+			}
+			fmt.Printf("vadcheck: %s\n", resp.Data.Code)
+		}
+	}
 	// 注册
 	for i, name := range userNames {
 		req := openapi.VoiceprintRegisterRequest{
 			AppName:      appName,
 			UnionID:      name,
 			Urls:         userFilesKey[i],
-			SamplingRate: "16k",
+			SamplingRate: sampling,
 			Timestamp:    time.Now().Unix(),
 			Replace:      true,
 		}
@@ -154,7 +182,7 @@ func main() {
 				AppName:      appName,
 				UnionID:      name,
 				Url:          key,
-				SamplingRate: "16k",
+				SamplingRate: sampling,
 				Timestamp:    time.Now().Unix(),
 			}
 			resp, _, err := client.VoiceprintApi.Verify(context.Background(),
@@ -176,7 +204,7 @@ func main() {
 			AppName:      appName,
 			UnionIDs:     userNames,
 			Url:          key,
-			SamplingRate: "16k",
+			SamplingRate: sampling,
 			Timestamp:    time.Now().Unix(),
 		}
 		resp, _, err := client.VoiceprintApi.Verify1ton(context.Background(),
