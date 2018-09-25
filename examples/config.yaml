@@ -1,0 +1,10 @@
+# 服务器地址
+app:
+  name: "your app name"
+  accessKey: "accessKey"
+  secretKey: "secretKey"
+bucket:
+  name: "your bucket name"
+  accessKey: "accessKey"
+  secretKey: "secretKey"
+simpleRate: "16k"
