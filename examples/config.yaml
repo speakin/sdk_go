@@ -7,4 +7,4 @@ bucket:
   name: "your bucket name"
   accessKey: "accessKey"
   secretKey: "secretKey"
-simpleRate: "16k"
+samplingRate: "16k"
