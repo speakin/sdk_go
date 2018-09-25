@@ -8,49 +8,61 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
-	"github.com/antihax/optional"
-	sdk "github.com/speakin/sdk_go"
-	"github.com/speakin/sdk_go/openapi"
 	"io/ioutil"
 	"os"
 	"time"
+
+	"github.com/antihax/optional"
+	sdk "github.com/speakin/sdk_go"
+	"github.com/speakin/sdk_go/openapi"
+	"gopkg.in/yaml.v2"
 )
 
-const (
-	sampling = "16k"
-)
-
-func uploadFile(filename string, client *openapi.APIClient, bucket string) string {
-	voice, err := os.Open(filename)
-	if err != nil {
-		panic(err)
-	}
-
-	resp, _, err := client.StorageApi.Upload(context.Background(),
-		bucket, "wav", time.Now().Unix(),
-		&openapi.UploadOpts{Body: optional.NewInterface(voice)})
-	if err != nil {
-		panic(err)
-	}
-	if resp.HasError {
-		fmt.Printf("%s:%s", resp.ErrorId, resp.ErrorDesc)
-		os.Exit(1)
-	}
-	return resp.Data.Key
+type Config struct {
+	App struct {
+		Name      string `yaml:"name"`
+		AccessKey string `yaml:"accessKey"`
+		SecretKey string `yaml:"secretKey"`
+	} `yaml:"app"`
+	Bucket struct {
+		Name      string `yaml:"name"`
+		AccessKey string `yaml:"accessKey"`
+		SecretKey string `yaml:"secretKey"`
+	} `yaml:"bucket"`
+	SamplingRate string `yaml:"samplingRate"`
 }
 
+var (
+	configFile = flag.String("c", "config.yaml", "config file")
+)
+
 func main() {
+	flag.Parse()
+	var config Config
+
+	fmt.Println(*configFile)
+	fileData, err := ioutil.ReadFile(*configFile)
+	fmt.Printf("%s", string(fileData))
+	if err != nil {
+		panic(err)
+	}
+	err = yaml.Unmarshal(fileData, &config)
+	if err != nil {
+		panic(err)
+	}
+
 	// 修改为你的app key和bucket key
 	client := sdk.NewClient(
-		"your_access_key",        // app access key
-		"your_secret_key",        // app secret key
-		"your_bucket_access_key", // bucket access key
-		"your_bucket_secret_key", // bucket secret key
+		config.App.AccessKey,
+		config.App.SecretKey,
+		config.Bucket.AccessKey,
+		config.Bucket.SecretKey,
 	)
 	// 修改为你的bucket名字和app名字
-	bucket := "bucket-test"
-	appName := "app-test"
+	bucket := config.Bucket.Name
+	appName := config.App.Name
 	// voice file
 	userNames := []string{"user_a", "user_b"}
 	userFiles := [][]string{
@@ -80,7 +92,7 @@ func main() {
 			req := openapi.VoiceprintVadcheckRequest{
 				AppName:      appName,
 				Url:          key,
-				SamplingRate: sampling,
+				SamplingRate: config.SamplingRate,
 				Duration:     1.5,
 				Timestamp:    time.Now().Unix(),
 			}
@@ -104,7 +116,7 @@ func main() {
 			AppName:      appName,
 			UnionID:      name,
 			Urls:         userFilesKey[i],
-			SamplingRate: sampling,
+			SamplingRate: config.SamplingRate,
 			Timestamp:    time.Now().Unix(),
 			Replace:      true,
 		}
@@ -153,7 +165,7 @@ func main() {
 				AppName:      appName,
 				UnionID:      name,
 				Url:          key,
-				SamplingRate: sampling,
+				SamplingRate: config.SamplingRate,
 				Timestamp:    time.Now().Unix(),
 			}
 			resp, _, err := client.VoiceprintApi.Verify(context.Background(),
@@ -175,7 +187,7 @@ func main() {
 			AppName:      appName,
 			UnionIDs:     userNames,
 			Url:          key,
-			SamplingRate: sampling,
+			SamplingRate: config.SamplingRate,
 			Timestamp:    time.Now().Unix(),
 		}
 		resp, _, err := client.VoiceprintApi.Verify1ton(context.Background(),
@@ -204,4 +216,23 @@ func main() {
 		ioutil.WriteFile("../testdata/tmp/tmp.wav", b, 0644)
 	}
 
+}
+
+func uploadFile(filename string, client *openapi.APIClient, bucket string) string {
+	voice, err := os.Open(filename)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, _, err := client.StorageApi.Upload(context.Background(),
+		bucket, "wav", time.Now().Unix(),
+		&openapi.UploadOpts{Body: optional.NewInterface(voice)})
+	if err != nil {
+		panic(err)
+	}
+	if resp.HasError {
+		fmt.Printf("%s:%s", resp.ErrorId, resp.ErrorDesc)
+		os.Exit(1)
+	}
+	return resp.Data.Key
 }
