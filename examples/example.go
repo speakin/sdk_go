@@ -21,7 +21,8 @@ import (
 )
 
 type Config struct {
-	App struct {
+	Host string `yaml:"host"`
+	App  struct {
 		Name      string `yaml:"name"`
 		AccessKey string `yaml:"accessKey"`
 		SecretKey string `yaml:"secretKey"`
@@ -54,12 +55,12 @@ func main() {
 	}
 
 	// 修改为你的app key和bucket key
-	client := sdk.NewClient(
-		config.App.AccessKey,
-		config.App.SecretKey,
-		config.Bucket.AccessKey,
-		config.Bucket.SecretKey,
-	)
+	var client *openapi.APIClient
+	if config.Host == "" {
+		client = sdk.NewClient(config.App.AccessKey, config.App.SecretKey, config.Bucket.AccessKey, config.Bucket.SecretKey)
+	} else {
+		client = sdk.NewClientWithHost(config.Host, config.App.AccessKey, config.App.SecretKey, config.Bucket.AccessKey, config.Bucket.SecretKey)
+	}
 	// 修改为你的bucket名字和app名字
 	bucket := config.Bucket.Name
 	appName := config.App.Name
@@ -77,6 +78,16 @@ func main() {
 			"../testdata/audio-data/u2/03_16k.wav",
 		},
 	}
+	/*userFiles := [][]string{
+		{
+			"../testdata/8k/xiaowei1.wav",
+			//"../testdata/8k/xiaowei2.wav",
+		},
+		{
+			"../testdata/8k/xiaowei1.wav",
+			//"../testdata/8k/xiaowei2.wav",
+		},
+	}*/
 	userFilesKey := make([][]string, 2)
 	// 上传所有注册文件
 	for i := range userNames {
@@ -85,7 +96,7 @@ func main() {
 		}
 	}
 	// vad检测所有上传的文件
-	for i := range userFilesKey {
+	/*for i := range userFilesKey {
 		for _, key := range userFilesKey[i] {
 			fmt.Printf("vadcheck key: %s\n", key)
 			// vadcheck
@@ -109,7 +120,7 @@ func main() {
 				fmt.Printf("vadcheck: %s\n", resp.Data.Code)
 			}
 		}
-	}
+	}*/
 	// 注册
 	for i, name := range userNames {
 		req := openapi.VoiceprintRegisterRequest{
