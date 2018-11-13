@@ -14,7 +14,7 @@ type VoiceprinttopnVerifyRequest struct {
 	// 应用名字
 	AppName string `json:"appName"`
 	// 文件url
-	Url []string `json:"url"`
+	Urls []string `json:"urls"`
 	// sampling rate
 	SamplingRate string `json:"samplingRate"`
 	// top n

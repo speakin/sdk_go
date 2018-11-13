@@ -838,9 +838,9 @@ components:
         name: VoiceprintVerifyResponse
     VoiceprinttopnVerifyRequest:
       example:
+        urls: []
         appName: test
         samplingRate: samplingRate
-        url: []
         topn: 10
         timestamp: 12345
       properties:
@@ -848,7 +848,7 @@ components:
           description: 应用名字
           example: test
           type: string
-        url:
+        urls:
           description: 文件url
           example: []
           items:
@@ -872,7 +872,7 @@ components:
       - samplingRate
       - timestamp
       - topn
-      - url
+      - urls
       type: object
       xml:
         name: VoiceprinttopnVerifyRequest
