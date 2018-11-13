@@ -61,8 +61,8 @@ Name | Type | Description  | Notes
 
 
 
- **durationMS** | **optional.Int64**|  | 
  **body** | **optional.Interface of *os.File****optional.*os.File**| 上传文件 | 
+ **durationMS** | **optional.Int64**|  | 
 
 ### Return type
 

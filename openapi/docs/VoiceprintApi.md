@@ -4,6 +4,7 @@ All URIs are relative to *https://vpc.speakin.mobi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Ctcdasr**](VoiceprintApi.md#Ctcdasr) | **Post** /cloudapi/v1beta/voiceprint/ctcdasr | 
 [**Delete**](VoiceprintApi.md#Delete) | **Post** /cloudapi/v1beta/voiceprint/delete | 
 [**Query**](VoiceprintApi.md#Query) | **Post** /cloudapi/v1beta/voiceprint/query | 
 [**Register**](VoiceprintApi.md#Register) | **Post** /cloudapi/v1beta/voiceprint/register | 
@@ -13,6 +14,41 @@ Method | HTTP request | Description
 [**Verify1ton**](VoiceprintApi.md#Verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
 [**Verifytopn**](VoiceprintApi.md#Verifytopn) | **Post** /cloudapi/v1beta/voiceprint/verifytopn | 
 
+
+# **Ctcdasr**
+> RespVoiceprintCtcdasrResponse Ctcdasr(ctx, optional)
+
+
+数字asr
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***CtcdasrOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a CtcdasrOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintCtcdasrRequest** | [**optional.Interface of VoiceprintCtcdasrRequest**](VoiceprintCtcdasrRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintCtcdasrResponse**](RespVoiceprintCtcdasrResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **Delete**
 > RespVoiceprintDeleteResponse Delete(ctx, optional)

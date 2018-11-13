@@ -10,15 +10,15 @@
 
 package openapi
 
-type VoiceprinttopnVerifyRequest struct {
+type VoiceprintCtcdasrRequest struct {
 	// 应用名字
 	AppName string `json:"appName"`
 	// 文件url
-	Url []string `json:"url"`
-	// sampling rate
+	Url string `json:"url"`
+	// 采样率,8k/16k
 	SamplingRate string `json:"samplingRate"`
-	// top n
-	Topn int64 `json:"topn"`
-	// 时间戳
+	// 时长(以秒为单位)
+	Duration float64 `json:"duration"`
+	// 时间戳（以秒为单位）
 	Timestamp int64 `json:"timestamp"`
 }

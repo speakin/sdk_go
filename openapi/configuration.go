@@ -63,7 +63,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://vpc.speakin.mobi",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/1.0.0/go",
+		UserAgent:     "OpenAPI-Generator/1.10/go",
 	}
 	return cfg
 }
