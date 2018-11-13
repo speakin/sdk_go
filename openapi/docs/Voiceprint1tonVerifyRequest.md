@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AppName** | **string** | 应用名字 | 
 **UnionIDs** | **[]string** | union IDs | 
-**Url** | **string** | 文件url | 
+**Urls** | **[]string** | 文件url | 
 **SamplingRate** | **string** | sampling rate | 
 **Timestamp** | **int64** | 时间戳 | 
 

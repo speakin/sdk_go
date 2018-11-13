@@ -16,7 +16,7 @@ type Voiceprint1tonVerifyRequest struct {
 	// union IDs
 	UnionIDs []string `json:"unionIDs"`
 	// 文件url
-	Url string `json:"url"`
+	Urls []string `json:"urls"`
 	// sampling rate
 	SamplingRate string `json:"samplingRate"`
 	// 时间戳

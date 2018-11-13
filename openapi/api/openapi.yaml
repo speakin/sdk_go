@@ -487,12 +487,13 @@ components:
         name: UploadResponse
     Voiceprint1tonVerifyRequest:
       example:
+        urls:
+        - "123456"
         appName: welab
         samplingRate: samplingRate
         unionIDs:
         - union_id2
         - union_id2
-        url: "123456"
         timestamp: 12345
       properties:
         appName:
@@ -508,10 +509,14 @@ components:
             example: union_id2
             type: string
           type: array
-        url:
+        urls:
           description: 文件url
-          example: "123456"
-          type: string
+          example:
+          - "123456"
+          items:
+            example: "123456"
+            type: string
+          type: array
         samplingRate:
           description: sampling rate
           type: string
@@ -525,7 +530,7 @@ components:
       - samplingRate
       - timestamp
       - unionIDs
-      - url
+      - urls
       type: object
       xml:
         name: Voiceprint1tonVerifyRequest
