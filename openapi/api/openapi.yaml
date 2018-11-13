@@ -177,6 +177,24 @@ paths:
           description: 响应参数
       tags:
       - voiceprint
+  /cloudapi/v1beta/voiceprint/verify_multi:
+    post:
+      description: 声纹验证1对多
+      operationId: verify_multi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintVerifyMultiRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintVerifyMultiResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
   /cloudapi/v1beta/storage/upload:
     post:
       description: 上传文件
@@ -420,6 +438,29 @@ components:
       type: object
       xml:
         name: RespVoiceprintVadcheckResponse
+    RespVoiceprintVerifyMultiResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          report:
+          - unionID: use_one
+            score: 99
+          - unionID: use_two
+            score: 10
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintVerifyMultiResponse'
+      type: object
+      xml:
+        name: RespVoiceprintVerifyMultiResponse
     RespVoiceprintVerifyResponse:
       example:
         errorDesc: errorDesc
@@ -792,6 +833,92 @@ components:
       type: object
       xml:
         name: VoiceprintVadcheckResponse
+    VoiceprintVerifyMultiReport:
+      properties:
+        unionID:
+          description: 唯一id
+          example: use_one
+          type: string
+        score:
+          description: 分数
+          example: 99
+          format: double
+          type: number
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiReport
+    VoiceprintVerifyMultiRequest:
+      example:
+        urls:
+        - "123456"
+        - "1234567"
+        appName: welab
+        samplingRate: samplingRate
+        unionIDs:
+        - use_one
+        - use_two
+        timestamp: 12345
+      properties:
+        appName:
+          description: 应用名字
+          example: welab
+          type: string
+        unionIDs:
+          description: 唯一ID
+          example:
+          - use_one
+          - use_two
+          items:
+            example: use_one
+            type: string
+          type: array
+        urls:
+          description: 文件url
+          example:
+          - "123456"
+          - "1234567"
+          items:
+            example: "123456"
+            type: string
+          type: array
+        samplingRate:
+          description: sampling rate
+          type: string
+        timestamp:
+          description: 时间戳
+          example: 12345
+          format: int64
+          type: integer
+      required:
+      - appName
+      - samplingRate
+      - timestamp
+      - unionIDs
+      - urls
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiRequest
+    VoiceprintVerifyMultiResponse:
+      example:
+        report:
+        - unionID: use_one
+          score: 99
+        - unionID: use_two
+          score: 10
+      properties:
+        report:
+          description: 结果
+          example:
+          - unionID: use_one
+            score: 99
+          - unionID: use_two
+            score: 10
+          items:
+            $ref: '#/components/schemas/VoiceprintVerifyMultiReport'
+          type: array
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiResponse
     VoiceprintVerifyRequest:
       example:
         unionID: use_one

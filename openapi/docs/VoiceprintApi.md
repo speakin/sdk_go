@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**Vadcheck**](VoiceprintApi.md#Vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 [**Verify**](VoiceprintApi.md#Verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 [**Verify1ton**](VoiceprintApi.md#Verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
+[**VerifyMulti**](VoiceprintApi.md#VerifyMulti) | **Post** /cloudapi/v1beta/voiceprint/verify_multi | 
 [**Verifytopn**](VoiceprintApi.md#Verifytopn) | **Post** /cloudapi/v1beta/voiceprint/verifytopn | 
 
 
@@ -283,6 +284,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RespVoiceprint1tonVerifyResponse**](RespVoiceprint1tonVerifyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **VerifyMulti**
+> RespVoiceprintVerifyMultiResponse VerifyMulti(ctx, optional)
+
+
+声纹验证1对多
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***VerifyMultiOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a VerifyMultiOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintVerifyMultiRequest** | [**optional.Interface of VoiceprintVerifyMultiRequest**](VoiceprintVerifyMultiRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintVerifyMultiResponse**](RespVoiceprintVerifyMultiResponse.md)
 
 ### Authorization
 

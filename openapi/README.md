@@ -40,6 +40,7 @@ Class | Method | HTTP request | Description
 *VoiceprintApi* | [**Vadcheck**](docs/VoiceprintApi.md#vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 *VoiceprintApi* | [**Verify**](docs/VoiceprintApi.md#verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 *VoiceprintApi* | [**Verify1ton**](docs/VoiceprintApi.md#verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
+*VoiceprintApi* | [**VerifyMulti**](docs/VoiceprintApi.md#verifymulti) | **Post** /cloudapi/v1beta/voiceprint/verify_multi | 
 *VoiceprintApi* | [**Verifytopn**](docs/VoiceprintApi.md#verifytopn) | **Post** /cloudapi/v1beta/voiceprint/verifytopn | 
 
 
@@ -54,6 +55,7 @@ Class | Method | HTTP request | Description
  - [RespVoiceprintRegisterResponse](docs/RespVoiceprintRegisterResponse.md)
  - [RespVoiceprintThresholdResponse](docs/RespVoiceprintThresholdResponse.md)
  - [RespVoiceprintVadcheckResponse](docs/RespVoiceprintVadcheckResponse.md)
+ - [RespVoiceprintVerifyMultiResponse](docs/RespVoiceprintVerifyMultiResponse.md)
  - [RespVoiceprintVerifyResponse](docs/RespVoiceprintVerifyResponse.md)
  - [RespVoiceprinttopnVerifyResponse](docs/RespVoiceprinttopnVerifyResponse.md)
  - [UnionIdScore](docs/UnionIdScore.md)
@@ -72,6 +74,9 @@ Class | Method | HTTP request | Description
  - [VoiceprintThresholdResponse](docs/VoiceprintThresholdResponse.md)
  - [VoiceprintVadcheckRequest](docs/VoiceprintVadcheckRequest.md)
  - [VoiceprintVadcheckResponse](docs/VoiceprintVadcheckResponse.md)
+ - [VoiceprintVerifyMultiReport](docs/VoiceprintVerifyMultiReport.md)
+ - [VoiceprintVerifyMultiRequest](docs/VoiceprintVerifyMultiRequest.md)
+ - [VoiceprintVerifyMultiResponse](docs/VoiceprintVerifyMultiResponse.md)
  - [VoiceprintVerifyRequest](docs/VoiceprintVerifyRequest.md)
  - [VoiceprintVerifyResponse](docs/VoiceprintVerifyResponse.md)
  - [VoiceprinttopnVerifyRequest](docs/VoiceprinttopnVerifyRequest.md)

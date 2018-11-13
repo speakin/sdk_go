@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"context"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
