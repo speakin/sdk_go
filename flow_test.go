@@ -24,7 +24,7 @@ func uploadFileUnit(t *testing.T, client *openapi.APIClient, fileName, bucket st
 
 	resp, _, err := client.StorageApi.Upload(
 		context.Background(),
-		bucket, "wav", 0, time.Now().Unix(),
+		bucket, "wav",  time.Now().Unix(),
 		&openapi.UploadOpts{Body: optional.NewInterface(voice)})
 	assert.NoError(t, err)
 	if resp.HasError {

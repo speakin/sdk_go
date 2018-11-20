@@ -12,8 +12,8 @@ servers:
 - description: dev
   url: https://vpc.speakin.mobi
 tags:
-- name: voiceprint
 - name: storage
+- name: voiceprint
 paths:
   /cloudapi/v1beta/voiceprint/query:
     post:
@@ -528,13 +528,12 @@ components:
         name: UploadResponse
     Voiceprint1tonVerifyRequest:
       example:
-        urls:
-        - "123456"
         appName: welab
         samplingRate: samplingRate
         unionIDs:
         - union_id2
         - union_id2
+        url: "123456"
         timestamp: 12345
       properties:
         appName:
@@ -550,14 +549,10 @@ components:
             example: union_id2
             type: string
           type: array
-        urls:
+        url:
           description: 文件url
-          example:
-          - "123456"
-          items:
-            example: "123456"
-            type: string
-          type: array
+          example: "123456"
+          type: string
         samplingRate:
           description: sampling rate
           type: string
@@ -571,7 +566,7 @@ components:
       - samplingRate
       - timestamp
       - unionIDs
-      - urls
+      - url
       type: object
       xml:
         name: Voiceprint1tonVerifyRequest
