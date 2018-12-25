@@ -12,9 +12,135 @@ servers:
 - description: dev
   url: https://vpc.speakin.mobi
 tags:
-- name: voiceprint
 - name: storage
+- name: voiceprint
 paths:
+  /cloudapi/v1beta/voiceprint/verify1ton:
+    post:
+      description: 声纹验证
+      operationId: verify1ton
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Voiceprint1tonVerifyRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprint1tonVerifyResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/agc:
+    post:
+      description: 增益
+      operationId: agc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintAgcRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintAgcResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/clips:
+    post:
+      description: 有效音
+      operationId: clips
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintClipsRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintClipsResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/ctcdasr:
+    post:
+      description: 数字asr
+      operationId: ctcdasr
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintCtcdasrRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintCtcdasrResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/delete:
+    post:
+      description: 声纹查询
+      operationId: delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintDeleteRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintDeleteResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/denoise:
+    post:
+      description: 降噪算法
+      operationId: denoise
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintDenoiseRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintDenoiseResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/mos:
+    post:
+      description: 计算mos值
+      operationId: mos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintMosRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintMosResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
   /cloudapi/v1beta/voiceprint/query:
     post:
       description: 声纹查询
@@ -51,75 +177,21 @@ paths:
           description: 响应参数
       tags:
       - voiceprint
-  /cloudapi/v1beta/voiceprint/verify:
+  /cloudapi/v1beta/voiceprint/split:
     post:
-      description: 声纹验证
-      operationId: verify
+      description: 人声分离
+      operationId: split
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VoiceprintVerifyRequest'
+              $ref: '#/components/schemas/VoiceprintSplitRequest'
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RespVoiceprintVerifyResponse'
-          description: 响应参数
-      tags:
-      - voiceprint
-  /cloudapi/v1beta/voiceprint/verify1ton:
-    post:
-      description: 声纹验证
-      operationId: verify1ton
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Voiceprint1tonVerifyRequest'
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RespVoiceprint1tonVerifyResponse'
-          description: 响应参数
-      tags:
-      - voiceprint
-  /cloudapi/v1beta/voiceprint/verifytopn:
-    post:
-      description: 声纹验证
-      operationId: verifytopn
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VoiceprinttopnVerifyRequest'
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RespVoiceprinttopnVerifyResponse'
-          description: 响应参数
-      tags:
-      - voiceprint
-  /cloudapi/v1beta/voiceprint/delete:
-    post:
-      description: 声纹查询
-      operationId: delete
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VoiceprintDeleteRequest'
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RespVoiceprintDeleteResponse'
+                $ref: '#/components/schemas/RespVoiceprintSplitResponse'
           description: 响应参数
       tags:
       - voiceprint
@@ -141,6 +213,24 @@ paths:
           description: 响应参数
       tags:
       - voiceprint
+  /cloudapi/v1beta/voiceprint/dynamicthreshold:
+    post:
+      description: 查询动态阈值
+      operationId: dynamicthreshold
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintDynamicThresholdRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintDynamicThresholdResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
   /cloudapi/v1beta/voiceprint/vadcheck:
     post:
       description: VAD检测
@@ -159,19 +249,93 @@ paths:
           description: 响应参数
       tags:
       - voiceprint
+  /cloudapi/v1beta/voiceprint/verify:
+    post:
+      description: 声纹验证
+      operationId: verify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintVerifyRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintVerifyResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/verify_multi:
+    post:
+      description: 声纹验证1对多
+      operationId: verify_multi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintVerifyMultiRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintVerifyMultiResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/verifytopn:
+    post:
+      description: 声纹验证
+      operationId: verifytopn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprinttopnVerifyRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprinttopnVerifyResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/normalize:
+    post:
+      description: 分数归一化
+      operationId: normalize
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintNormalizeRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintNormalizeResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
   /cloudapi/v1beta/storage/upload:
     post:
       description: 上传文件
       operationId: upload
       parameters:
-      - explode: true
+      - description: 桶id
+        explode: true
         in: query
         name: bucket
         required: true
         schema:
           type: string
         style: form
-      - explode: true
+      - description: 文件类型
+        explode: true
         in: query
         name: type
         required: true
@@ -179,7 +343,8 @@ paths:
           example: wav
           type: string
         style: form
-      - explode: true
+      - description: 时长
+        explode: true
         in: query
         name: durationMS
         required: false
@@ -188,7 +353,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - explode: true
+      - description: 时间戳
+        explode: true
         in: query
         name: timestamp
         required: true
@@ -205,7 +371,10 @@ paths:
               type: string
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/body'
+              properties:
+                file:
+                  format: binary
+                  type: string
         description: 上传文件
       responses:
         200:
@@ -221,14 +390,16 @@ paths:
       description: 下载文件
       operationId: download
       parameters:
-      - explode: true
+      - description: 桶id
+        explode: true
         in: query
         name: bucket
         required: true
         schema:
           type: string
         style: form
-      - explode: true
+      - description: 文件key
+        explode: true
         in: query
         name: key
         required: true
@@ -287,6 +458,92 @@ components:
       type: object
       xml:
         name: RespVoiceprint1tonVerifyResponse
+    RespVoiceprintAgcResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          key: xx_xxxxx-xxxxx
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintAgcResponse'
+      type: object
+      xml:
+        name: RespVoiceprintAgcResponse
+    RespVoiceprintClipsResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          ringingSlice:
+          - startMS: 0
+            endMS: 0
+          - startMS: 0
+            endMS: 0
+          humanSlice:
+          - startMS: 0
+            endMS: 3000
+          - startMS: 5000
+            endMS: 8000
+          musicSlice:
+          - startMS: 0
+            endMS: 0
+          - startMS: 0
+            endMS: 0
+          silentSlice:
+          - startMS: 0
+            endMS: 0
+          - startMS: 0
+            endMS: 0
+          broadcastSlice:
+          - startMS: 0
+            endMS: 0
+          - startMS: 0
+            endMS: 0
+          busySignalSlice:
+          - startMS: 0
+            endMS: 0
+          - startMS: 0
+            endMS: 0
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintClipsResponse'
+      type: object
+      xml:
+        name: RespVoiceprintClipsResponse
+    RespVoiceprintCtcdasrResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          asrString: "123456"
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintCtcdasrResponse'
+      type: object
+      xml:
+        name: RespVoiceprintCtcdasrResponse
     RespVoiceprintDeleteResponse:
       example:
         errorDesc: errorDesc
@@ -306,6 +563,83 @@ components:
       type: object
       xml:
         name: RespVoiceprintDeleteResponse
+    RespVoiceprintDenoiseResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          string: "22"
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintDenoiseResponse'
+      type: object
+      xml:
+        name: RespVoiceprintDenoiseResponse
+    RespVoiceprintDynamicThresholdResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          threshold: 0.38
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintDynamicThresholdResponse'
+      type: object
+      xml:
+        name: RespVoiceprintDynamicThresholdResponse
+    RespVoiceprintMosResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          score: 2.5
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintMosResponse'
+      type: object
+      xml:
+        name: RespVoiceprintMosResponse
+    RespVoiceprintNormalizeResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          score:
+          - 100
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintNormalizeResponse'
+      type: object
+      xml:
+        name: RespVoiceprintNormalizeResponse
     RespVoiceprintQueryResponse:
       example:
         errorDesc: errorDesc
@@ -344,6 +678,46 @@ components:
       type: object
       xml:
         name: RespVoiceprintRegisterResponse
+    RespVoiceprintSplitResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+        - - startMS: 0
+            endMS: 3000
+          - startMS: 5000
+            endMS: 8000
+        - - startMS: 3001
+            endMS: 5000
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          example:
+          - - startMS: 0
+              endMS: 3000
+            - startMS: 5000
+              endMS: 8000
+          - - startMS: 3001
+              endMS: 5000
+          items:
+            example:
+            - startMS: 0
+              endMS: 3000
+            - startMS: 5000
+              endMS: 8000
+            items:
+              $ref: '#/components/schemas/VoiceprintSplitResponse'
+            type: array
+          type: array
+      type: object
+      xml:
+        name: RespVoiceprintSplitResponse
     RespVoiceprintThresholdResponse:
       example:
         errorDesc: errorDesc
@@ -383,6 +757,29 @@ components:
       type: object
       xml:
         name: RespVoiceprintVadcheckResponse
+    RespVoiceprintVerifyMultiResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          report:
+          - unionID: use_one
+            score: 99
+          - unionID: use_two
+            score: 10
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintVerifyMultiResponse'
+      type: object
+      xml:
+        name: RespVoiceprintVerifyMultiResponse
     RespVoiceprintVerifyResponse:
       example:
         errorDesc: errorDesc
@@ -509,6 +906,244 @@ components:
       type: object
       xml:
         name: Voiceprint1tonVerifyResponse
+    VoiceprintAgcRequest:
+      example:
+        mode: 2
+        duration: 0
+        level: 5
+        appName: test
+        samplingRate: 8k
+        url: x_xxxxx-xxxxx
+        timestamp: 123456
+      properties:
+        appName:
+          description: 应用名字
+          example: test
+          type: string
+        url:
+          description: 文件url
+          example: x_xxxxx-xxxxx
+          type: string
+        mode:
+          description: 0 不做处理,1  模拟音量调节,2 自适应增益,3 固定增益
+          example: 2
+          format: int32
+          type: integer
+        level:
+          description: db值
+          example: 5
+          format: int32
+          type: integer
+        samplingRate:
+          description: 采样率,8k/16k
+          example: 8k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 0
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 123456
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintAgcRequest
+    VoiceprintAgcResponse:
+      example:
+        key: xx_xxxxx-xxxxx
+      properties:
+        key:
+          description: 增益后文件key
+          example: xx_xxxxx-xxxxx
+          type: string
+      type: object
+      xml:
+        name: VoiceprintAgcResponse
+    VoiceprintClipsRequest:
+      example:
+        duration: 16000
+        appName: test_app
+        samplingRate: 16k
+        url: xxx-xxx-xxx
+        timestamp: 0
+      properties:
+        appName:
+          description: 应用名字
+          example: test_app
+          type: string
+        url:
+          description: 文件url
+          example: xxx-xxx-xxx
+          type: string
+        samplingRate:
+          description: 采样率,8k/16k
+          example: 16k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 16000
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 0
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintClipsRequest
+    VoiceprintClipsResponse:
+      example:
+        ringingSlice:
+        - startMS: 0
+          endMS: 0
+        - startMS: 0
+          endMS: 0
+        humanSlice:
+        - startMS: 0
+          endMS: 3000
+        - startMS: 5000
+          endMS: 8000
+        musicSlice:
+        - startMS: 0
+          endMS: 0
+        - startMS: 0
+          endMS: 0
+        silentSlice:
+        - startMS: 0
+          endMS: 0
+        - startMS: 0
+          endMS: 0
+        broadcastSlice:
+        - startMS: 0
+          endMS: 0
+        - startMS: 0
+          endMS: 0
+        busySignalSlice:
+        - startMS: 0
+          endMS: 0
+        - startMS: 0
+          endMS: 0
+      properties:
+        humanSlice:
+          description: 人声
+          example:
+          - startMS: 0
+            endMS: 3000
+          - startMS: 5000
+            endMS: 8000
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+        broadcastSlice:
+          description: 播报
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+        musicSlice:
+          description: 音乐
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+        busySignalSlice:
+          description: 忙音
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+        ringingSlice:
+          description: 铃声
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+        silentSlice:
+          description: 静音
+          items:
+            $ref: '#/components/schemas/VoiceprintClipsSlice'
+          type: array
+      type: object
+      xml:
+        name: VoiceprintClipsResponse
+    VoiceprintClipsSlice:
+      example:
+        startMS: 0
+        endMS: 0
+      properties:
+        startMS:
+          description: 开始时间
+          example: 0
+          format: int32
+          type: integer
+        endMS:
+          description: 结束时间
+          example: 0
+          format: int32
+          type: integer
+      type: object
+      xml:
+        name: VoiceprintClipsSlice
+    VoiceprintCtcdasrRequest:
+      example:
+        duration: 0
+        appName: appName
+        samplingRate: samplingRate
+        url: storage/xxxx-xxxx
+        timestamp: 0
+      properties:
+        appName:
+          description: 应用名字
+          type: string
+        url:
+          description: 文件url
+          example: storage/xxxx-xxxx
+          type: string
+        samplingRate:
+          description: 采样率,8k/16k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 0
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 0
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintCtcdasrRequest
+    VoiceprintCtcdasrResponse:
+      example:
+        asrString: "123456"
+      properties:
+        asrString:
+          description: 数字asr
+          example: "123456"
+          type: string
+      type: object
+      xml:
+        name: VoiceprintCtcdasrResponse
     VoiceprintDeleteRequest:
       example:
         unionID: unionID
@@ -536,6 +1171,195 @@ components:
     VoiceprintDeleteResponse:
       xml:
         name: VoiceprintDeleteResponse
+    VoiceprintDenoiseRequest:
+      example:
+        mode: 0
+        duration: 0
+        method: rnn
+        appName: test
+        samplingRate: 8k
+        url: url
+        timestamp: 123456
+      properties:
+        appName:
+          description: 应用名字
+          example: test
+          type: string
+        url:
+          description: 文件url
+          type: string
+        method:
+          description: 降噪方法:rnn/winner
+          example: rnn
+          type: string
+        mode:
+          description: 降噪力度:0/1/2/3
+          example: 0
+          format: int32
+          type: integer
+        samplingRate:
+          description: 采样率,8k/16k
+          example: 8k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 0
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 123456
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - method
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintDenoiseRequest
+    VoiceprintDenoiseResponse:
+      example:
+        string: "22"
+      properties:
+        string:
+          description: 降噪后文件key
+          example: "22"
+          type: string
+      type: object
+      xml:
+        name: VoiceprintDenoiseResponse
+    VoiceprintDynamicThresholdRequest:
+      example:
+        unionID: unionID
+        appName: appName
+        timestamp: 123456
+      properties:
+        appName:
+          description: 应用名字
+          type: string
+        unionID:
+          description: union ID
+          type: string
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 123456
+          format: int64
+          type: integer
+      required:
+      - appName
+      - timestamp
+      - unionID
+      type: object
+      xml:
+        name: VoiceprintDynamicThresholdRequest
+    VoiceprintDynamicThresholdResponse:
+      example:
+        threshold: 0.38
+      properties:
+        threshold:
+          description: 阈值
+          example: 0.38
+          format: double
+          type: number
+      type: object
+      xml:
+        name: VoiceprintDynamicThresholdResponse
+    VoiceprintMosRequest:
+      example:
+        duration: 0
+        appName: appName
+        samplingRate: samplingRate
+        url: storage/xxxx-xxxx
+        timestamp: 0
+      properties:
+        appName:
+          description: 应用名字
+          type: string
+        url:
+          description: 文件url
+          example: storage/xxxx-xxxx
+          type: string
+        samplingRate:
+          description: 采样率,8k/16k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 0
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 0
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintMosRequest
+    VoiceprintMosResponse:
+      example:
+        score: 2.5
+      properties:
+        score:
+          description: 分数
+          example: 2.5
+          format: double
+          type: number
+      type: object
+      xml:
+        name: VoiceprintMosResponse
+    VoiceprintNormalizeRequest:
+      example:
+        score:
+        - 130.1
+        appName: appName
+      properties:
+        appName:
+          description: 应用名字
+          type: string
+        score:
+          description: 分数
+          example:
+          - 130.1
+          items:
+            example: 130.1
+            format: double
+            type: number
+          type: array
+      required:
+      - appName
+      - score
+      type: object
+      xml:
+        name: VoiceprintNormalizeRequest
+    VoiceprintNormalizeResponse:
+      example:
+        score:
+        - 100
+      properties:
+        score:
+          description: 归一化之后的分数
+          example:
+          - 100
+          items:
+            example: 100
+            format: double
+            type: number
+          type: array
+      required:
+      - score
+      type: object
+      xml:
+        name: VoiceprintNormalizeResponse
     VoiceprintQueryRequest:
       example:
         unionID: unionID
@@ -621,6 +1445,60 @@ components:
     VoiceprintRegisterResponse:
       xml:
         name: VoiceprintRegisterResponse
+    VoiceprintSplitRequest:
+      example:
+        duration: 16000
+        appName: test_app
+        samplingRate: 16k
+        url: xxx-xxx-xxx
+        timestamp: 0
+      properties:
+        appName:
+          description: 应用名字
+          example: test_app
+          type: string
+        url:
+          description: 文件url
+          example: xxx-xxx-xxx
+          type: string
+        samplingRate:
+          description: 采样率,8k/16k
+          example: 16k
+          type: string
+        duration:
+          description: 时长(以秒为单位)
+          example: 16000
+          format: double
+          type: number
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 0
+          format: int64
+          type: integer
+      required:
+      - appName
+      - duration
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintSplitRequest
+    VoiceprintSplitResponse:
+      properties:
+        startMS:
+          description: 开始时间
+          example: 0
+          format: int32
+          type: integer
+        endMS:
+          description: 结束时间
+          example: 3000
+          format: int32
+          type: integer
+      type: object
+      xml:
+        name: VoiceprintSplitResponse
     VoiceprintThresholdRequest:
       example:
         appName: appName
@@ -702,6 +1580,92 @@ components:
       type: object
       xml:
         name: VoiceprintVadcheckResponse
+    VoiceprintVerifyMultiReport:
+      properties:
+        unionID:
+          description: 唯一id
+          example: use_one
+          type: string
+        score:
+          description: 分数
+          example: 99
+          format: double
+          type: number
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiReport
+    VoiceprintVerifyMultiRequest:
+      example:
+        urls:
+        - "123456"
+        - "1234567"
+        appName: welab
+        samplingRate: samplingRate
+        unionIDs:
+        - use_one
+        - use_two
+        timestamp: 12345
+      properties:
+        appName:
+          description: 应用名字
+          example: welab
+          type: string
+        unionIDs:
+          description: 唯一ID
+          example:
+          - use_one
+          - use_two
+          items:
+            example: use_one
+            type: string
+          type: array
+        urls:
+          description: 文件url
+          example:
+          - "123456"
+          - "1234567"
+          items:
+            example: "123456"
+            type: string
+          type: array
+        samplingRate:
+          description: sampling rate
+          type: string
+        timestamp:
+          description: 时间戳
+          example: 12345
+          format: int64
+          type: integer
+      required:
+      - appName
+      - samplingRate
+      - timestamp
+      - unionIDs
+      - urls
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiRequest
+    VoiceprintVerifyMultiResponse:
+      example:
+        report:
+        - unionID: use_one
+          score: 99
+        - unionID: use_two
+          score: 10
+      properties:
+        report:
+          description: 结果
+          example:
+          - unionID: use_one
+            score: 99
+          - unionID: use_two
+            score: 10
+          items:
+            $ref: '#/components/schemas/VoiceprintVerifyMultiReport'
+          type: array
+      type: object
+      xml:
+        name: VoiceprintVerifyMultiResponse
     VoiceprintVerifyRequest:
       example:
         unionID: use_one
@@ -755,7 +1719,7 @@ components:
       example:
         appName: test
         samplingRate: samplingRate
-        url: "123456"
+        url: url
         topn: 10
         timestamp: 12345
       properties:
@@ -765,7 +1729,6 @@ components:
           type: string
         url:
           description: 文件url
-          example: "123456"
           type: string
         samplingRate:
           description: sampling rate
@@ -806,8 +1769,3 @@ components:
       type: object
       xml:
         name: VoiceprinttopnVerifyResponse
-    body:
-      properties:
-        file:
-          format: binary
-          type: string

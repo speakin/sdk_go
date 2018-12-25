@@ -19,8 +19,8 @@ Method | HTTP request | Description
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **bucket** | **string**|  | 
-  **key** | **string**|  | 
+  **bucket** | **string**| 桶id | 
+  **key** | **string**| 文件key | 
 
 ### Return type
 
@@ -48,9 +48,9 @@ No authorization required
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **bucket** | **string**|  | 
-  **type_** | **string**|  | 
-  **timestamp** | **int64**|  | 
+  **bucket** | **string**| 桶id | 
+  **type_** | **string**| 文件类型 | 
+  **timestamp** | **int64**| 时间戳 | 
  **optional** | ***UploadOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 
 
- **durationMS** | **optional.Int64**|  | 
+ **durationMS** | **optional.Int64**| 时长 | 
  **body** | **optional.Interface of *os.File****optional.*os.File**| 上传文件 | 
 
 ### Return type

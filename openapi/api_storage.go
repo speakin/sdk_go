@@ -12,12 +12,12 @@ package openapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	_ "io/ioutil"
+	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
+	"github.com/antihax/optional"
+	"os"
 )
 
 // Linger please
@@ -31,8 +31,8 @@ type StorageApiService service
 StorageApiService
 下载文件
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param bucket
- * @param key
+ * @param bucket 桶id
+ * @param key 文件key
 @return *os.File
 */
 func (a *StorageApiService) Download(ctx context.Context, bucket string, key string) (*os.File, *http.Response, error) {
@@ -81,31 +81,35 @@ func (a *StorageApiService) Download(ctx context.Context, bucket string, key str
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
-		if err != nil {
-			return localVarReturnValue, localVarHttpResponse, err
-		}
-	}
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v *os.File
-			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -117,18 +121,18 @@ func (a *StorageApiService) Download(ctx context.Context, bucket string, key str
 StorageApiService
 上传文件
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param bucket
- * @param type_
- * @param timestamp
+ * @param bucket 桶id
+ * @param type_ 文件类型
+ * @param timestamp 时间戳
  * @param optional nil or *UploadOpts - Optional Parameters:
- * @param "DurationMS" (optional.Int64) -
+ * @param "DurationMS" (optional.Int64) -  时长
  * @param "Body" (optional.Interface of *os.File) -  上传文件
 @return CallUploadResponse
 */
 
 type UploadOpts struct {
 	DurationMS optional.Int64
-	Body       optional.Interface
+	Body optional.Interface
 }
 
 func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ string, timestamp int64, localVarOptionals *UploadOpts) (CallUploadResponse, *http.Response, error) {
@@ -186,31 +190,35 @@ func (a *StorageApiService) Upload(ctx context.Context, bucket string, type_ str
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
-		if err != nil {
-			return localVarReturnValue, localVarHttpResponse, err
-		}
-	}
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v CallUploadResponse
-			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}

@@ -32,42 +32,79 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *StorageApi* | [**Download**](docs/StorageApi.md#download) | **Get** /cloudapi/v1beta/storage/download | 
 *StorageApi* | [**Upload**](docs/StorageApi.md#upload) | **Post** /cloudapi/v1beta/storage/upload | 
+*VoiceprintApi* | [**Agc**](docs/VoiceprintApi.md#agc) | **Post** /cloudapi/v1beta/voiceprint/agc | 
+*VoiceprintApi* | [**Clips**](docs/VoiceprintApi.md#clips) | **Post** /cloudapi/v1beta/voiceprint/clips | 
+*VoiceprintApi* | [**Ctcdasr**](docs/VoiceprintApi.md#ctcdasr) | **Post** /cloudapi/v1beta/voiceprint/ctcdasr | 
 *VoiceprintApi* | [**Delete**](docs/VoiceprintApi.md#delete) | **Post** /cloudapi/v1beta/voiceprint/delete | 
+*VoiceprintApi* | [**Denoise**](docs/VoiceprintApi.md#denoise) | **Post** /cloudapi/v1beta/voiceprint/denoise | 
+*VoiceprintApi* | [**Dynamicthreshold**](docs/VoiceprintApi.md#dynamicthreshold) | **Post** /cloudapi/v1beta/voiceprint/dynamicthreshold | 
+*VoiceprintApi* | [**Mos**](docs/VoiceprintApi.md#mos) | **Post** /cloudapi/v1beta/voiceprint/mos | 
+*VoiceprintApi* | [**Normalize**](docs/VoiceprintApi.md#normalize) | **Post** /cloudapi/v1beta/voiceprint/normalize | 
 *VoiceprintApi* | [**Query**](docs/VoiceprintApi.md#query) | **Post** /cloudapi/v1beta/voiceprint/query | 
 *VoiceprintApi* | [**Register**](docs/VoiceprintApi.md#register) | **Post** /cloudapi/v1beta/voiceprint/register | 
+*VoiceprintApi* | [**Split**](docs/VoiceprintApi.md#split) | **Post** /cloudapi/v1beta/voiceprint/split | 
 *VoiceprintApi* | [**Threshold**](docs/VoiceprintApi.md#threshold) | **Post** /cloudapi/v1beta/voiceprint/threshold | 
 *VoiceprintApi* | [**Vadcheck**](docs/VoiceprintApi.md#vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 *VoiceprintApi* | [**Verify**](docs/VoiceprintApi.md#verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 *VoiceprintApi* | [**Verify1ton**](docs/VoiceprintApi.md#verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
+*VoiceprintApi* | [**VerifyMulti**](docs/VoiceprintApi.md#verifymulti) | **Post** /cloudapi/v1beta/voiceprint/verify_multi | 
 *VoiceprintApi* | [**Verifytopn**](docs/VoiceprintApi.md#verifytopn) | **Post** /cloudapi/v1beta/voiceprint/verifytopn | 
 
 
 ## Documentation For Models
 
- - [Body](docs/Body.md)
  - [CallUploadResponse](docs/CallUploadResponse.md)
  - [RespVoiceprint1tonVerifyResponse](docs/RespVoiceprint1tonVerifyResponse.md)
+ - [RespVoiceprintAgcResponse](docs/RespVoiceprintAgcResponse.md)
+ - [RespVoiceprintClipsResponse](docs/RespVoiceprintClipsResponse.md)
+ - [RespVoiceprintCtcdasrResponse](docs/RespVoiceprintCtcdasrResponse.md)
  - [RespVoiceprintDeleteResponse](docs/RespVoiceprintDeleteResponse.md)
+ - [RespVoiceprintDenoiseResponse](docs/RespVoiceprintDenoiseResponse.md)
+ - [RespVoiceprintDynamicThresholdResponse](docs/RespVoiceprintDynamicThresholdResponse.md)
+ - [RespVoiceprintMosResponse](docs/RespVoiceprintMosResponse.md)
+ - [RespVoiceprintNormalizeResponse](docs/RespVoiceprintNormalizeResponse.md)
  - [RespVoiceprintQueryResponse](docs/RespVoiceprintQueryResponse.md)
  - [RespVoiceprintRegisterResponse](docs/RespVoiceprintRegisterResponse.md)
+ - [RespVoiceprintSplitResponse](docs/RespVoiceprintSplitResponse.md)
  - [RespVoiceprintThresholdResponse](docs/RespVoiceprintThresholdResponse.md)
  - [RespVoiceprintVadcheckResponse](docs/RespVoiceprintVadcheckResponse.md)
+ - [RespVoiceprintVerifyMultiResponse](docs/RespVoiceprintVerifyMultiResponse.md)
  - [RespVoiceprintVerifyResponse](docs/RespVoiceprintVerifyResponse.md)
  - [RespVoiceprinttopnVerifyResponse](docs/RespVoiceprinttopnVerifyResponse.md)
  - [UnionIdScore](docs/UnionIdScore.md)
  - [UploadResponse](docs/UploadResponse.md)
  - [Voiceprint1tonVerifyRequest](docs/Voiceprint1tonVerifyRequest.md)
  - [Voiceprint1tonVerifyResponse](docs/Voiceprint1tonVerifyResponse.md)
+ - [VoiceprintAgcRequest](docs/VoiceprintAgcRequest.md)
+ - [VoiceprintAgcResponse](docs/VoiceprintAgcResponse.md)
+ - [VoiceprintClipsRequest](docs/VoiceprintClipsRequest.md)
+ - [VoiceprintClipsResponse](docs/VoiceprintClipsResponse.md)
+ - [VoiceprintClipsSlice](docs/VoiceprintClipsSlice.md)
+ - [VoiceprintCtcdasrRequest](docs/VoiceprintCtcdasrRequest.md)
+ - [VoiceprintCtcdasrResponse](docs/VoiceprintCtcdasrResponse.md)
  - [VoiceprintDeleteRequest](docs/VoiceprintDeleteRequest.md)
  - [VoiceprintDeleteResponse](docs/VoiceprintDeleteResponse.md)
+ - [VoiceprintDenoiseRequest](docs/VoiceprintDenoiseRequest.md)
+ - [VoiceprintDenoiseResponse](docs/VoiceprintDenoiseResponse.md)
+ - [VoiceprintDynamicThresholdRequest](docs/VoiceprintDynamicThresholdRequest.md)
+ - [VoiceprintDynamicThresholdResponse](docs/VoiceprintDynamicThresholdResponse.md)
+ - [VoiceprintMosRequest](docs/VoiceprintMosRequest.md)
+ - [VoiceprintMosResponse](docs/VoiceprintMosResponse.md)
+ - [VoiceprintNormalizeRequest](docs/VoiceprintNormalizeRequest.md)
+ - [VoiceprintNormalizeResponse](docs/VoiceprintNormalizeResponse.md)
  - [VoiceprintQueryRequest](docs/VoiceprintQueryRequest.md)
  - [VoiceprintQueryResponse](docs/VoiceprintQueryResponse.md)
  - [VoiceprintRegisterRequest](docs/VoiceprintRegisterRequest.md)
  - [VoiceprintRegisterResponse](docs/VoiceprintRegisterResponse.md)
+ - [VoiceprintSplitRequest](docs/VoiceprintSplitRequest.md)
+ - [VoiceprintSplitResponse](docs/VoiceprintSplitResponse.md)
  - [VoiceprintThresholdRequest](docs/VoiceprintThresholdRequest.md)
  - [VoiceprintThresholdResponse](docs/VoiceprintThresholdResponse.md)
  - [VoiceprintVadcheckRequest](docs/VoiceprintVadcheckRequest.md)
  - [VoiceprintVadcheckResponse](docs/VoiceprintVadcheckResponse.md)
+ - [VoiceprintVerifyMultiReport](docs/VoiceprintVerifyMultiReport.md)
+ - [VoiceprintVerifyMultiRequest](docs/VoiceprintVerifyMultiRequest.md)
+ - [VoiceprintVerifyMultiResponse](docs/VoiceprintVerifyMultiResponse.md)
  - [VoiceprintVerifyRequest](docs/VoiceprintVerifyRequest.md)
  - [VoiceprintVerifyResponse](docs/VoiceprintVerifyResponse.md)
  - [VoiceprinttopnVerifyRequest](docs/VoiceprinttopnVerifyRequest.md)

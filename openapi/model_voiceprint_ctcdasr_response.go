@@ -9,10 +9,8 @@
  */
 
 package openapi
-import (
-	"os"
-)
 
-type Body struct {
-	File *os.File `json:"file,omitempty"`
+type VoiceprintCtcdasrResponse struct {
+	// 数字asr
+	AsrString string `json:"asrString,omitempty"`
 }
