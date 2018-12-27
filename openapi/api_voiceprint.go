@@ -12,11 +12,11 @@ package openapi
 
 import (
 	"context"
-	"io/ioutil"
+	//"io/ioutil"
+	"github.com/antihax/optional"
 	"net/http"
 	"net/url"
 	"strings"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -31,7 +31,7 @@ VoiceprintApiService
 增益
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *AgcOpts - Optional Parameters:
- * @param "VoiceprintAgcRequest" (optional.Interface of VoiceprintAgcRequest) - 
+ * @param "VoiceprintAgcRequest" (optional.Interface of VoiceprintAgcRequest) -
 @return RespVoiceprintAgcResponse
 */
 
@@ -92,35 +92,31 @@ func (a *VoiceprintApiService) Agc(ctx context.Context, localVarOptionals *AgcOp
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintAgcResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -133,7 +129,7 @@ VoiceprintApiService
 有效音
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ClipsOpts - Optional Parameters:
- * @param "VoiceprintClipsRequest" (optional.Interface of VoiceprintClipsRequest) - 
+ * @param "VoiceprintClipsRequest" (optional.Interface of VoiceprintClipsRequest) -
 @return RespVoiceprintClipsResponse
 */
 
@@ -194,35 +190,31 @@ func (a *VoiceprintApiService) Clips(ctx context.Context, localVarOptionals *Cli
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintClipsResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -235,7 +227,7 @@ VoiceprintApiService
 数字asr
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *CtcdasrOpts - Optional Parameters:
- * @param "VoiceprintCtcdasrRequest" (optional.Interface of VoiceprintCtcdasrRequest) - 
+ * @param "VoiceprintCtcdasrRequest" (optional.Interface of VoiceprintCtcdasrRequest) -
 @return RespVoiceprintCtcdasrResponse
 */
 
@@ -296,35 +288,31 @@ func (a *VoiceprintApiService) Ctcdasr(ctx context.Context, localVarOptionals *C
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintCtcdasrResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -337,7 +325,7 @@ VoiceprintApiService
 声纹查询
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DeleteOpts - Optional Parameters:
- * @param "VoiceprintDeleteRequest" (optional.Interface of VoiceprintDeleteRequest) - 
+ * @param "VoiceprintDeleteRequest" (optional.Interface of VoiceprintDeleteRequest) -
 @return RespVoiceprintDeleteResponse
 */
 
@@ -398,35 +386,31 @@ func (a *VoiceprintApiService) Delete(ctx context.Context, localVarOptionals *De
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintDeleteResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -439,7 +423,7 @@ VoiceprintApiService
 降噪算法
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DenoiseOpts - Optional Parameters:
- * @param "VoiceprintDenoiseRequest" (optional.Interface of VoiceprintDenoiseRequest) - 
+ * @param "VoiceprintDenoiseRequest" (optional.Interface of VoiceprintDenoiseRequest) -
 @return RespVoiceprintDenoiseResponse
 */
 
@@ -500,35 +484,31 @@ func (a *VoiceprintApiService) Denoise(ctx context.Context, localVarOptionals *D
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintDenoiseResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -541,7 +521,7 @@ VoiceprintApiService
 查询动态阈值
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DynamicthresholdOpts - Optional Parameters:
- * @param "VoiceprintDynamicThresholdRequest" (optional.Interface of VoiceprintDynamicThresholdRequest) - 
+ * @param "VoiceprintDynamicThresholdRequest" (optional.Interface of VoiceprintDynamicThresholdRequest) -
 @return RespVoiceprintDynamicThresholdResponse
 */
 
@@ -602,35 +582,31 @@ func (a *VoiceprintApiService) Dynamicthreshold(ctx context.Context, localVarOpt
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintDynamicThresholdResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -643,7 +619,7 @@ VoiceprintApiService
 计算mos值
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *MosOpts - Optional Parameters:
- * @param "VoiceprintMosRequest" (optional.Interface of VoiceprintMosRequest) - 
+ * @param "VoiceprintMosRequest" (optional.Interface of VoiceprintMosRequest) -
 @return RespVoiceprintMosResponse
 */
 
@@ -704,35 +680,31 @@ func (a *VoiceprintApiService) Mos(ctx context.Context, localVarOptionals *MosOp
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintMosResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -745,7 +717,7 @@ VoiceprintApiService
 分数归一化
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *NormalizeOpts - Optional Parameters:
- * @param "VoiceprintNormalizeRequest" (optional.Interface of VoiceprintNormalizeRequest) - 
+ * @param "VoiceprintNormalizeRequest" (optional.Interface of VoiceprintNormalizeRequest) -
 @return RespVoiceprintNormalizeResponse
 */
 
@@ -806,35 +778,31 @@ func (a *VoiceprintApiService) Normalize(ctx context.Context, localVarOptionals 
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintNormalizeResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -847,7 +815,7 @@ VoiceprintApiService
 声纹查询
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *QueryOpts - Optional Parameters:
- * @param "VoiceprintQueryRequest" (optional.Interface of VoiceprintQueryRequest) - 
+ * @param "VoiceprintQueryRequest" (optional.Interface of VoiceprintQueryRequest) -
 @return RespVoiceprintQueryResponse
 */
 
@@ -908,35 +876,31 @@ func (a *VoiceprintApiService) Query(ctx context.Context, localVarOptionals *Que
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintQueryResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -949,7 +913,7 @@ VoiceprintApiService
 声纹注册
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *RegisterOpts - Optional Parameters:
- * @param "VoiceprintRegisterRequest" (optional.Interface of VoiceprintRegisterRequest) - 
+ * @param "VoiceprintRegisterRequest" (optional.Interface of VoiceprintRegisterRequest) -
 @return RespVoiceprintRegisterResponse
 */
 
@@ -1010,35 +974,31 @@ func (a *VoiceprintApiService) Register(ctx context.Context, localVarOptionals *
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintRegisterResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1051,7 +1011,7 @@ VoiceprintApiService
 人声分离
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SplitOpts - Optional Parameters:
- * @param "VoiceprintSplitRequest" (optional.Interface of VoiceprintSplitRequest) - 
+ * @param "VoiceprintSplitRequest" (optional.Interface of VoiceprintSplitRequest) -
 @return RespVoiceprintSplitResponse
 */
 
@@ -1112,35 +1072,31 @@ func (a *VoiceprintApiService) Split(ctx context.Context, localVarOptionals *Spl
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintSplitResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1153,7 +1109,7 @@ VoiceprintApiService
 查询阈值
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ThresholdOpts - Optional Parameters:
- * @param "VoiceprintThresholdRequest" (optional.Interface of VoiceprintThresholdRequest) - 
+ * @param "VoiceprintThresholdRequest" (optional.Interface of VoiceprintThresholdRequest) -
 @return RespVoiceprintThresholdResponse
 */
 
@@ -1214,35 +1170,31 @@ func (a *VoiceprintApiService) Threshold(ctx context.Context, localVarOptionals 
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintThresholdResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1255,7 +1207,7 @@ VoiceprintApiService
 VAD检测
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VadcheckOpts - Optional Parameters:
- * @param "VoiceprintVadcheckRequest" (optional.Interface of VoiceprintVadcheckRequest) - 
+ * @param "VoiceprintVadcheckRequest" (optional.Interface of VoiceprintVadcheckRequest) -
 @return RespVoiceprintVadcheckResponse
 */
 
@@ -1316,35 +1268,31 @@ func (a *VoiceprintApiService) Vadcheck(ctx context.Context, localVarOptionals *
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintVadcheckResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1357,7 +1305,7 @@ VoiceprintApiService
 声纹验证
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VerifyOpts - Optional Parameters:
- * @param "VoiceprintVerifyRequest" (optional.Interface of VoiceprintVerifyRequest) - 
+ * @param "VoiceprintVerifyRequest" (optional.Interface of VoiceprintVerifyRequest) -
 @return RespVoiceprintVerifyResponse
 */
 
@@ -1418,35 +1366,31 @@ func (a *VoiceprintApiService) Verify(ctx context.Context, localVarOptionals *Ve
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintVerifyResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1459,7 +1403,7 @@ VoiceprintApiService
 声纹验证
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *Verify1tonOpts - Optional Parameters:
- * @param "Voiceprint1tonVerifyRequest" (optional.Interface of Voiceprint1tonVerifyRequest) - 
+ * @param "Voiceprint1tonVerifyRequest" (optional.Interface of Voiceprint1tonVerifyRequest) -
 @return RespVoiceprint1tonVerifyResponse
 */
 
@@ -1520,35 +1464,31 @@ func (a *VoiceprintApiService) Verify1ton(ctx context.Context, localVarOptionals
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprint1tonVerifyResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1561,7 +1501,7 @@ VoiceprintApiService
 声纹验证1对多
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VerifyMultiOpts - Optional Parameters:
- * @param "VoiceprintVerifyMultiRequest" (optional.Interface of VoiceprintVerifyMultiRequest) - 
+ * @param "VoiceprintVerifyMultiRequest" (optional.Interface of VoiceprintVerifyMultiRequest) -
 @return RespVoiceprintVerifyMultiResponse
 */
 
@@ -1622,35 +1562,31 @@ func (a *VoiceprintApiService) VerifyMulti(ctx context.Context, localVarOptional
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprintVerifyMultiResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
@@ -1663,7 +1599,7 @@ VoiceprintApiService
 声纹验证
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VerifytopnOpts - Optional Parameters:
- * @param "VoiceprinttopnVerifyRequest" (optional.Interface of VoiceprinttopnVerifyRequest) - 
+ * @param "VoiceprinttopnVerifyRequest" (optional.Interface of VoiceprinttopnVerifyRequest) -
 @return RespVoiceprinttopnVerifyResponse
 */
 
@@ -1724,35 +1660,31 @@ func (a *VoiceprintApiService) Verifytopn(ctx context.Context, localVarOptionals
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
-			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RespVoiceprinttopnVerifyResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
 			return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}

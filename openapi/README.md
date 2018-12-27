@@ -53,6 +53,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Body](docs/Body.md)
  - [CallUploadResponse](docs/CallUploadResponse.md)
  - [RespVoiceprint1tonVerifyResponse](docs/RespVoiceprint1tonVerifyResponse.md)
  - [RespVoiceprintAgcResponse](docs/RespVoiceprintAgcResponse.md)

@@ -371,10 +371,7 @@ paths:
               type: string
           multipart/form-data:
             schema:
-              properties:
-                file:
-                  format: binary
-                  type: string
+              $ref: '#/components/schemas/body'
         description: 上传文件
       responses:
         200:
@@ -1769,3 +1766,8 @@ components:
       type: object
       xml:
         name: VoiceprinttopnVerifyResponse
+    body:
+      properties:
+        file:
+          format: binary
+          type: string
