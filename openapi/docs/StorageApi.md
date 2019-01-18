@@ -1,6 +1,6 @@
 # \StorageApi
 
-All URIs are relative to *https://vpc.speakin.mobi*
+All URIs are relative to *http://192.168.1.170:8888*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

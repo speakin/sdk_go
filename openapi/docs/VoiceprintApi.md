@@ -1,6 +1,6 @@
 # \VoiceprintApi
 
-All URIs are relative to *https://vpc.speakin.mobi*
+All URIs are relative to *http://192.168.1.170:8888*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**Delete**](VoiceprintApi.md#Delete) | **Post** /cloudapi/v1beta/voiceprint/delete | 
 [**Denoise**](VoiceprintApi.md#Denoise) | **Post** /cloudapi/v1beta/voiceprint/denoise | 
 [**Dynamicthreshold**](VoiceprintApi.md#Dynamicthreshold) | **Post** /cloudapi/v1beta/voiceprint/dynamicthreshold | 
+[**Emotion**](VoiceprintApi.md#Emotion) | **Post** /cloudapi/v1beta/voiceprint/emotion | 
+[**Gender**](VoiceprintApi.md#Gender) | **Post** /cloudapi/v1beta/voiceprint/gender | 
 [**Mos**](VoiceprintApi.md#Mos) | **Post** /cloudapi/v1beta/voiceprint/mos | 
 [**Normalize**](VoiceprintApi.md#Normalize) | **Post** /cloudapi/v1beta/voiceprint/normalize | 
 [**Query**](VoiceprintApi.md#Query) | **Post** /cloudapi/v1beta/voiceprint/query | 
@@ -221,6 +223,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RespVoiceprintDynamicThresholdResponse**](RespVoiceprintDynamicThresholdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **Emotion**
+> RespVoiceprintEmotionResponse Emotion(ctx, optional)
+
+
+情绪识别
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***EmotionOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a EmotionOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintEmotionRequest** | [**optional.Interface of VoiceprintEmotionRequest**](VoiceprintEmotionRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintEmotionResponse**](RespVoiceprintEmotionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **Gender**
+> RespVoiceprintGenderResponse Gender(ctx, optional)
+
+
+性别识别
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GenderOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GenderOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintGenderRequest** | [**optional.Interface of VoiceprintGenderRequest**](VoiceprintGenderRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintGenderResponse**](RespVoiceprintGenderResponse.md)
 
 ### Authorization
 

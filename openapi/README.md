@@ -26,7 +26,7 @@ import "./openapi"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://vpc.speakin.mobi*
+All URIs are relative to *http://192.168.1.170:8888*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -38,6 +38,8 @@ Class | Method | HTTP request | Description
 *VoiceprintApi* | [**Delete**](docs/VoiceprintApi.md#delete) | **Post** /cloudapi/v1beta/voiceprint/delete | 
 *VoiceprintApi* | [**Denoise**](docs/VoiceprintApi.md#denoise) | **Post** /cloudapi/v1beta/voiceprint/denoise | 
 *VoiceprintApi* | [**Dynamicthreshold**](docs/VoiceprintApi.md#dynamicthreshold) | **Post** /cloudapi/v1beta/voiceprint/dynamicthreshold | 
+*VoiceprintApi* | [**Emotion**](docs/VoiceprintApi.md#emotion) | **Post** /cloudapi/v1beta/voiceprint/emotion | 
+*VoiceprintApi* | [**Gender**](docs/VoiceprintApi.md#gender) | **Post** /cloudapi/v1beta/voiceprint/gender | 
 *VoiceprintApi* | [**Mos**](docs/VoiceprintApi.md#mos) | **Post** /cloudapi/v1beta/voiceprint/mos | 
 *VoiceprintApi* | [**Normalize**](docs/VoiceprintApi.md#normalize) | **Post** /cloudapi/v1beta/voiceprint/normalize | 
 *VoiceprintApi* | [**Query**](docs/VoiceprintApi.md#query) | **Post** /cloudapi/v1beta/voiceprint/query | 
@@ -62,6 +64,8 @@ Class | Method | HTTP request | Description
  - [RespVoiceprintDeleteResponse](docs/RespVoiceprintDeleteResponse.md)
  - [RespVoiceprintDenoiseResponse](docs/RespVoiceprintDenoiseResponse.md)
  - [RespVoiceprintDynamicThresholdResponse](docs/RespVoiceprintDynamicThresholdResponse.md)
+ - [RespVoiceprintEmotionResponse](docs/RespVoiceprintEmotionResponse.md)
+ - [RespVoiceprintGenderResponse](docs/RespVoiceprintGenderResponse.md)
  - [RespVoiceprintMosResponse](docs/RespVoiceprintMosResponse.md)
  - [RespVoiceprintNormalizeResponse](docs/RespVoiceprintNormalizeResponse.md)
  - [RespVoiceprintQueryResponse](docs/RespVoiceprintQueryResponse.md)
@@ -89,6 +93,10 @@ Class | Method | HTTP request | Description
  - [VoiceprintDenoiseResponse](docs/VoiceprintDenoiseResponse.md)
  - [VoiceprintDynamicThresholdRequest](docs/VoiceprintDynamicThresholdRequest.md)
  - [VoiceprintDynamicThresholdResponse](docs/VoiceprintDynamicThresholdResponse.md)
+ - [VoiceprintEmotionRequest](docs/VoiceprintEmotionRequest.md)
+ - [VoiceprintEmotionResponse](docs/VoiceprintEmotionResponse.md)
+ - [VoiceprintGenderRequest](docs/VoiceprintGenderRequest.md)
+ - [VoiceprintGenderResponse](docs/VoiceprintGenderResponse.md)
  - [VoiceprintMosRequest](docs/VoiceprintMosRequest.md)
  - [VoiceprintMosResponse](docs/VoiceprintMosResponse.md)
  - [VoiceprintNormalizeRequest](docs/VoiceprintNormalizeRequest.md)
