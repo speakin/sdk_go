@@ -1400,6 +1400,104 @@ func (a *VoiceprintApiService) Threshold(ctx context.Context, localVarOptionals 
 
 /*
 VoiceprintApiService
+录音攻击
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *TtsOpts - Optional Parameters:
+ * @param "VoiceprintTtsRequest" (optional.Interface of VoiceprintTtsRequest) -
+@return RespVoiceprintTtsResponse
+*/
+
+type TtsOpts struct {
+	VoiceprintTtsRequest optional.Interface
+}
+
+func (a *VoiceprintApiService) Tts(ctx context.Context, localVarOptionals *TtsOpts) (RespVoiceprintTtsResponse, *http.Response, error) {
+	var (
+		localVarHttpMethod   = strings.ToUpper("Post")
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  RespVoiceprintTtsResponse
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/cloudapi/v1beta/voiceprint/tts"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	if localVarOptionals != nil && localVarOptionals.VoiceprintTtsRequest.IsSet() {
+		localVarOptionalVoiceprintTtsRequest, localVarOptionalVoiceprintTtsRequestok := localVarOptionals.VoiceprintTtsRequest.Value().(VoiceprintTtsRequest)
+		if !localVarOptionalVoiceprintTtsRequestok {
+			return localVarReturnValue, nil, reportError("voiceprintTtsRequest should be VoiceprintTtsRequest")
+		}
+		localVarPostBody = &localVarOptionalVoiceprintTtsRequest
+	}
+
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+		if err != nil {
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			error: localVarHttpResponse.Status,
+		}
+		if localVarHttpResponse.StatusCode == 200 {
+			var v RespVoiceprintTtsResponse
+			err = a.client.decode(&v, localVarHttpResponse.Body, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VoiceprintApiService
 VAD检测
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VadcheckOpts - Optional Parameters:

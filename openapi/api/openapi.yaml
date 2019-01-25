@@ -10,7 +10,7 @@ info:
   version: /cloudapi/v1beta
 servers:
 - description: dev
-  url: http://192.168.1.170:8888
+  url: https://vpc.speakin.mobi
 tags:
 - name: storage
 - name: voiceprint
@@ -354,6 +354,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RespVoiceprintGenderResponse'
+          description: 响应参数
+      tags:
+      - voiceprint
+  /cloudapi/v1beta/voiceprint/tts:
+    post:
+      description: 录音攻击
+      operationId: tts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceprintTTSRequest'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespVoiceprintTTSResponse'
           description: 响应参数
       tags:
       - voiceprint
@@ -789,6 +807,26 @@ components:
       type: object
       xml:
         name: RespVoiceprintSplitResponse
+    RespVoiceprintTTSResponse:
+      example:
+        errorDesc: errorDesc
+        data:
+          score: 0
+          isTTS: true
+        hasError: true
+        errorId: errorId
+      properties:
+        hasError:
+          type: boolean
+        errorId:
+          type: string
+        errorDesc:
+          type: string
+        data:
+          $ref: '#/components/schemas/VoiceprintTTSResponse'
+      type: object
+      xml:
+        name: RespVoiceprintTTSResponse
     RespVoiceprintThresholdResponse:
       example:
         errorDesc: errorDesc
@@ -1652,6 +1690,47 @@ components:
       type: object
       xml:
         name: VoiceprintSplitResponse
+    VoiceprintTTSRequest:
+      properties:
+        appName:
+          description: 应用名字
+          example: app-test
+          type: string
+        url:
+          description: 文件url
+          example: xxx
+          type: string
+        samplingRate:
+          description: 采样率,8k/16k
+          example: 16k
+          type: string
+        timestamp:
+          description: 时间戳（以秒为单位）
+          example: 123456
+          format: int64
+          type: integer
+      required:
+      - appName
+      - samplingRate
+      - timestamp
+      - url
+      type: object
+      xml:
+        name: VoiceprintTTSRequest
+    VoiceprintTTSResponse:
+      example:
+        score: 0
+        isTTS: true
+      properties:
+        isTTS:
+          type: boolean
+        score:
+          example: 0
+          format: double
+          type: number
+      type: object
+      xml:
+        name: VoiceprintTTSResponse
     VoiceprintThresholdRequest:
       example:
         appName: appName

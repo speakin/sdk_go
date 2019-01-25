@@ -1,6 +1,6 @@
 # \VoiceprintApi
 
-All URIs are relative to *http://192.168.1.170:8888*
+All URIs are relative to *https://vpc.speakin.mobi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**Register**](VoiceprintApi.md#Register) | **Post** /cloudapi/v1beta/voiceprint/register | 
 [**Split**](VoiceprintApi.md#Split) | **Post** /cloudapi/v1beta/voiceprint/split | 
 [**Threshold**](VoiceprintApi.md#Threshold) | **Post** /cloudapi/v1beta/voiceprint/threshold | 
+[**Tts**](VoiceprintApi.md#Tts) | **Post** /cloudapi/v1beta/voiceprint/tts | 
 [**Vadcheck**](VoiceprintApi.md#Vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 [**Verify**](VoiceprintApi.md#Verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 [**Verify1ton**](VoiceprintApi.md#Verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
@@ -503,6 +504,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RespVoiceprintThresholdResponse**](RespVoiceprintThresholdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **Tts**
+> RespVoiceprintTtsResponse Tts(ctx, optional)
+
+
+录音攻击
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***TtsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a TtsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **voiceprintTtsRequest** | [**optional.Interface of VoiceprintTtsRequest**](VoiceprintTtsRequest.md)|  | 
+
+### Return type
+
+[**RespVoiceprintTtsResponse**](RespVoiceprintTTSResponse.md)
 
 ### Authorization
 

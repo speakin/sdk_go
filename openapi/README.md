@@ -26,7 +26,7 @@ import "./openapi"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://192.168.1.170:8888*
+All URIs are relative to *https://vpc.speakin.mobi*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -46,6 +46,7 @@ Class | Method | HTTP request | Description
 *VoiceprintApi* | [**Register**](docs/VoiceprintApi.md#register) | **Post** /cloudapi/v1beta/voiceprint/register | 
 *VoiceprintApi* | [**Split**](docs/VoiceprintApi.md#split) | **Post** /cloudapi/v1beta/voiceprint/split | 
 *VoiceprintApi* | [**Threshold**](docs/VoiceprintApi.md#threshold) | **Post** /cloudapi/v1beta/voiceprint/threshold | 
+*VoiceprintApi* | [**Tts**](docs/VoiceprintApi.md#tts) | **Post** /cloudapi/v1beta/voiceprint/tts | 
 *VoiceprintApi* | [**Vadcheck**](docs/VoiceprintApi.md#vadcheck) | **Post** /cloudapi/v1beta/voiceprint/vadcheck | 
 *VoiceprintApi* | [**Verify**](docs/VoiceprintApi.md#verify) | **Post** /cloudapi/v1beta/voiceprint/verify | 
 *VoiceprintApi* | [**Verify1ton**](docs/VoiceprintApi.md#verify1ton) | **Post** /cloudapi/v1beta/voiceprint/verify1ton | 
@@ -72,6 +73,7 @@ Class | Method | HTTP request | Description
  - [RespVoiceprintRegisterResponse](docs/RespVoiceprintRegisterResponse.md)
  - [RespVoiceprintSplitResponse](docs/RespVoiceprintSplitResponse.md)
  - [RespVoiceprintThresholdResponse](docs/RespVoiceprintThresholdResponse.md)
+ - [RespVoiceprintTtsResponse](docs/RespVoiceprintTtsResponse.md)
  - [RespVoiceprintVadcheckResponse](docs/RespVoiceprintVadcheckResponse.md)
  - [RespVoiceprintVerifyMultiResponse](docs/RespVoiceprintVerifyMultiResponse.md)
  - [RespVoiceprintVerifyResponse](docs/RespVoiceprintVerifyResponse.md)
@@ -109,6 +111,8 @@ Class | Method | HTTP request | Description
  - [VoiceprintSplitResponse](docs/VoiceprintSplitResponse.md)
  - [VoiceprintThresholdRequest](docs/VoiceprintThresholdRequest.md)
  - [VoiceprintThresholdResponse](docs/VoiceprintThresholdResponse.md)
+ - [VoiceprintTtsRequest](docs/VoiceprintTtsRequest.md)
+ - [VoiceprintTtsResponse](docs/VoiceprintTtsResponse.md)
  - [VoiceprintVadcheckRequest](docs/VoiceprintVadcheckRequest.md)
  - [VoiceprintVadcheckResponse](docs/VoiceprintVadcheckResponse.md)
  - [VoiceprintVerifyMultiReport](docs/VoiceprintVerifyMultiReport.md)
